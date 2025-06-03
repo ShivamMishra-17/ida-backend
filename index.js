@@ -52,33 +52,32 @@ app.post("/api/capture-payment", async (req, res) => {
       amount,
     };
 
+    console.log(userData);
+
     // Optional: Save to Google Sheets
     await axios.post(
-      "https://script.google.com/macros/s/AKfycbwfPd_UnIA-J2Mw6uY5KBHWuwMEJ3JoE-23fdf6q36id8Z-pRBF3AVNRR8BkikH8_okQA/exec",
-      userData,
+      "https://script.google.com/macros/s/AKfycbwvxn7p9UvrlJr-qcIQhxpkMgXoUW44t8umxXq1qwCy5MrKC4p2sRH2BQuuju0GGr6_Mw/exec",
       {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
+        body: JSON.stringify(userData),
       }
     );
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Payment captured and data stored",
-        userData,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Payment captured and data stored",
+      userData,
+    });
   } catch (error) {
     console.error("❌ Error capturing payment:", error);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Payment capture failed",
-        error: error.message,
-      });
+    res.status(500).json({
+      success: false,
+      message: "Payment capture failed",
+      error: error.message,
+    });
   }
 });
 
