@@ -55,16 +55,16 @@ app.post("/api/capture-payment", async (req, res) => {
     console.log(userData);
 
     // Optional: Save to Google Sheets
-    await axios.post(
-      "https://script.google.com/macros/s/AKfycbwvxn7p9UvrlJr-qcIQhxpkMgXoUW44t8umxXq1qwCy5MrKC4p2sRH2BQuuju0GGr6_Mw/exec",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: JSON.stringify(userData),
-      }
-    );
+    // await axios.post(
+    //   "https://script.google.com/macros/s/AKfycbwvxn7p9UvrlJr-qcIQhxpkMgXoUW44t8umxXq1qwCy5MrKC4p2sRH2BQuuju0GGr6_Mw/exec",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/x-www-form-urlencoded",
+    //     },
+    //     body: JSON.stringify(userData),
+    //   }
+    // );
 
     res.status(200).json({
       success: true,
